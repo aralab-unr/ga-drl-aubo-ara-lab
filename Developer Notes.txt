@@ -1,0 +1,43 @@
+cd catkin_workspace/
+source devel/setup.bash
+rosdep install openai_ros
+cd
+cd workspace/ga-drl-aubo-success-code/
+python3 ga.py
+
+roslaunch aubo_i5_moveit_config demo.launch
+
+python2.7 moveit_motion_control.py
+
+
+python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA  --n_epochs=10 --num_cpu=6
+
+python3 -m train --env=AuboReach-v1 --logdir=$HOME/openaiGA --n_epochs=100 --num_cpu=6 --polyak_value=0.184 --gamma_value=0.88 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.055 --noise_epsilon=0.774
+
+python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA --n_epochs=100 --num_cpu=6 --polyak_value=0.184 --gamma_value=0.88 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.055 --noise_epsilon=0.774
+
+python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA --n_epochs=100 --num_cpu=6 --polyak_value=0.555 --gamma_value=0.22 --q_learning=0.444 --pi_learning=0.333 --random_epsilon=0.777 --noise_epsilon=0.111
+
+python3 plot.py $HOME/openaiGA
+
+
+Parameters changed for Testing:
+max_episode_steps #100 aubo_reach2.py
+success rate threshold #0.85 train.py, aubo_reach2.py
+self.T in rollouts.py -> causing one cycle in epoch to run forever #100
+n_cycles #50 config.py, DEFAULT_ENV_PARAMS
+n_batches #40 config.py
+epochs_default #50 ga.py
+n_test_rollouts #50 config.py
+population_size #30 ga.py
+ga.run #30 ga.py
+
+
+ga run (30) -> epoch (50) -> cycle (50) -> episode (100) -> self.T in rollout.py (500) -> batch (40)
+
+# mobile manipulator code
+https://github.com/robowork/autonomous_mobile_manipulation
+
+# forward kinematics to convert joint states to end effector pose
+https://answers.ros.org/question/327873/find-end-effector-pose-from-joint-state/
+https://github.com/orocos/orocos_kinematics_dynamics

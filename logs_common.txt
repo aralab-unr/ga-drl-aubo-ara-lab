@@ -1,0 +1,65 @@
+======Setting Parameters value=========
+Tau = 0.493 || Gamma = 0.868 || Q_learning = 0.748 || pi_learning = 0.786 || random_epsilon = 0.348 || noise_epsilon = 0.841
+======Run 1 took 3.1885034680366515 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.729 || Gamma = 0.078 || Q_learning = 0.999 || pi_learning = 0.732 || random_epsilon = 0.457 || noise_epsilon = 0.24
+======Run 2 took 3.1945913592974344 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.509 || Gamma = 0.946 || Q_learning = 0.999 || pi_learning = 0.876 || random_epsilon = 0.664 || noise_epsilon = 0.464
+======Run 3 took 3.2627557555834454 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.358 || Gamma = 0.306 || Q_learning = 0.999 || pi_learning = 0.805 || random_epsilon = 0.183 || noise_epsilon = 0.037
+======Run 4 took 4.026685742537181 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.326 || Gamma = 0.531 || Q_learning = 0.318 || pi_learning = 0.548 || random_epsilon = 0.006 || noise_epsilon = 0.536
+======Run 5 took 3.2037597417831423 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.28 || Gamma = 0.485 || Q_learning = 0.112 || pi_learning = 0.314 || random_epsilon = 0.016 || noise_epsilon = 0.619
+======Run 6 took 3.1310605645179748 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.049 || Gamma = 0.786 || Q_learning = 0.999 || pi_learning = 0.38 || random_epsilon = 0.202 || noise_epsilon = 0.564
+======Run 7 took 3.184790615240733 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.074 || Gamma = 0.555 || Q_learning = 0.373 || pi_learning = 0.127 || random_epsilon = 0.404 || noise_epsilon = 0.205
+======Run 8 took 3.171364223957062 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.061 || Gamma = 0.463 || Q_learning = 0.283 || pi_learning = 0.918 || random_epsilon = 0.22 || noise_epsilon = 0.343
+======Run 9 took 3.7953709880510966 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.785 || Gamma = 0.999 || Q_learning = 0.574 || pi_learning = 0.83 || random_epsilon = 0.157 || noise_epsilon = 0.656
+======Run 10 took 3.6041985154151917 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.159 || Gamma = 0.457 || Q_learning = 0.999 || pi_learning = 0.999 || random_epsilon = 0.122 || noise_epsilon = 0.534
+======Run 11 took 3.1793466607729592 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.712 || Gamma = 0.89 || Q_learning = 0.289 || pi_learning = 0.444 || random_epsilon = 0.97 || noise_epsilon = 0.766
+======Run 12 took 3.199409834543864 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.235 || Gamma = 0.061 || Q_learning = 0.712 || pi_learning = 0.958 || random_epsilon = 0.078 || noise_epsilon = 0.679
+======Run 13 took 3.18238578637441 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.722 || Gamma = 0.015 || Q_learning = 0.506 || pi_learning = 0.432 || random_epsilon = 0.374 || noise_epsilon = 0.672
+======Run 14 took 3.1806966423988343 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.019 || Gamma = 0.982 || Q_learning = 0.328 || pi_learning = 0.336 || random_epsilon = 0.351 || noise_epsilon = 0.11
+======Run 15 took 3.1992980281511945 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.941 || Gamma = 0.8 || Q_learning = 0.118 || pi_learning = 0.764 || random_epsilon = 0.339 || noise_epsilon = 0.806
+======Run 16 took 3.1057294487953184 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.549 || Gamma = 0.011 || Q_learning = 0.999 || pi_learning = 0.042 || random_epsilon = 0.352 || noise_epsilon = 0.999
+======Run 17 took 3.0903601964314777 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.877 || Gamma = 0.649 || Q_learning = 0.999 || pi_learning = 0.338 || random_epsilon = 0.322 || noise_epsilon = 0.676
+======Run 18 took 3.1875795563062033 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.086 || Gamma = 0.382 || Q_learning = 0.999 || pi_learning = 0.371 || random_epsilon = 0.752 || noise_epsilon = 0.815
+======Run 19 took 3.1827436049779254 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.583 || Gamma = 0.524 || Q_learning = 0.999 || pi_learning = 0.69 || random_epsilon = 0.565 || noise_epsilon = 0.238
+======Run 20 took 3.2708052078882854 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.156 || Gamma = 0.714 || Q_learning = 0.968 || pi_learning = 0.211 || random_epsilon = 0.517 || noise_epsilon = 0.114
+======Run 21 took 3.763313825925191 minutes to complete=========
+======Setting Parameters value=========
+Tau = 0.569 || Gamma = 0.671 || Q_learning = 0.488 || pi_learning = 0.737 || random_epsilon = 0.484 || noise_epsilon = 0.105

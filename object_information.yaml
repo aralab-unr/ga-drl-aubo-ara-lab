@@ -1,0 +1,17 @@
+items:
+  - name: unit_box_0
+    type: free_shapes
+    init_pos: [-0.13, 0.848, 1.06, 0, 0, 0]
+    height: 0
+  - name: door_handle
+    type: door_handle
+    init_pos: [-0.13, 0.848, 1.06, 0.002567, 0.102, 1.563]
+    height: 0
+  - name: unit_box_1
+    type: free_shapes
+    init_pos: [-0.13, 0.848, 1.06, 0, 0, 0]
+    height: 0
+  - name: combox
+    type: combox
+    init_pos: [0.028, 0.88, 1.07, 0, 1.57, 0]
+    height: 0.109
