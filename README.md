@@ -142,3 +142,4 @@ sys.exit()
 ```
 
 ## Aubo environment setup details:
+Action: Each action is a set of 6 joint states of Aubo i5 robot

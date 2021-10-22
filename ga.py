@@ -31,10 +31,8 @@ if os.path.exists("logs_common.txt"):
   os.remove("logs_common.txt")
 
 #logs success rate after rollout workers complete (each epoch)
-if os.path.exists(
-        "Experiments/plots data files by execution id/Execution 23 - optimal params/logs_success_rate_per_epoch.txt"):
-  os.remove(
-      "Experiments/plots data files by execution id/Execution 23 - optimal params/logs_success_rate_per_epoch.txt")
+if os.path.exists("logs_success_rate_per_epoch.txt"):
+  os.remove("logs_success_rate_per_epoch.txt")
 
 #logs success being set in rollout.py
 if os.path.exists(

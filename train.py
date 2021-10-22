@@ -100,9 +100,9 @@ def train(policy, rollout_worker, evaluator,
 
         # success_rate = mpi_average(rollout_worker.current_success_rate())
         # print('Success rate is {}'.format(mpi_average(rollout_worker.current_success_rate())))
-        with open(
-                'Experiments/plots data files by execution id/Execution 23 - optimal params/logs_success_rate_per_epoch.txt', 'a') as output:
-            output.write(str(success_rate) + "\n")
+        # with open(
+        #         'logs_success_rate_per_epoch.txt', 'a') as output:
+        #     output.write(str(success_rate) + "\n")
         #checking if success rate has reached close to maximum, if so, return number of epochs
         if success_rate >= 0.8: #0.85
             logger.info('Saving epochs to file...')
