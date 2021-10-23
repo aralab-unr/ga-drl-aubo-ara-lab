@@ -1,0 +1,165 @@
+Logging to /home/adarshsehgal/openaiGA
+T: 50
+_Q_lr: 0.001
+_action_l2: 1.0
+_batch_size: 256
+_buffer_size: 1000000
+_clip_obs: 200.0
+_hidden: 256
+_layers: 3
+_max_u: 1.7
+_network_class: actor_critic:ActorCritic
+_norm_clip: 5
+_norm_eps: 0.01
+_pi_lr: 0.001
+_polyak: 0.756
+_relative_goals: False
+_scope: ddpg
+ddpg_params: {'buffer_size': 1000000, 'hidden': 256, 'layers': 3, 'network_class': 'actor_critic:ActorCritic', 'polyak': 0.756, 'batch_size': 256, 'Q_lr': 0.001, 'pi_lr': 0.001, 'norm_eps': 0.01, 'norm_clip': 5, 'max_u': 1.7, 'action_l2': 1.0, 'clip_obs': 200.0, 'scope': 'ddpg', 'relative_goals': False}
+env_name: AuboReach-v2
+gamma: 0.427
+make_env: <function prepare_params.<locals>.make_env at 0x7fd7c1a938c0>
+n_batches: 40
+n_cycles: 10
+n_test_rollouts: 10
+noise_eps: 0.827
+random_eps: 0.296
+replay_k: 4
+replay_strategy: future
+rollout_batch_size: 2
+test_with_polyak: False
+Creating a DDPG agent with action space 6 x 1.7...
+Training...
+------------------------------------
+| epoch              | 0           |
+| stats_g/mean       | -0.09824904 |
+| stats_g/std        | 1.0443121   |
+| stats_o/mean       | 0.11586993  |
+| stats_o/std        | 1.0871459   |
+| test/episode       | 20.0        |
+| test/mean_Q        | -0.7194516  |
+| test/success_rate  | 1.0         |
+| train/episode      | 20.0        |
+| train/success_rate | 0.0         |
+------------------------------------
+Saving epochs to file...
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_0.pkl ...
+------------------------------------
+| epoch              | 1           |
+| stats_g/mean       | -0.13890144 |
+| stats_g/std        | 1.0179554   |
+| stats_o/mean       | 0.06549878  |
+| stats_o/std        | 1.0860362   |
+| test/episode       | 40.0        |
+| test/mean_Q        | -0.35483113 |
+| test/success_rate  | 0.0         |
+| train/episode      | 40.0        |
+| train/success_rate | 0.0         |
+------------------------------------
+------------------------------------
+| epoch              | 2           |
+| stats_g/mean       | -0.15245228 |
+| stats_g/std        | 1.0019417   |
+| stats_o/mean       | 0.043136846 |
+| stats_o/std        | 1.0758878   |
+| test/episode       | 60.0        |
+| test/mean_Q        | -0.1602498  |
+| test/success_rate  | 0.0         |
+| train/episode      | 60.0        |
+| train/success_rate | 0.0         |
+------------------------------------
+-----------------------------------
+| epoch              | 3          |
+| stats_g/mean       | -0.1576036 |
+| stats_g/std        | 0.9965002  |
+| stats_o/mean       | 0.0345519  |
+| stats_o/std        | 1.0713489  |
+| test/episode       | 80.0       |
+| test/mean_Q        | -0.2500159 |
+| test/success_rate  | 1.0        |
+| train/episode      | 80.0       |
+| train/success_rate | 0.0        |
+-----------------------------------
+Saving epochs to file...
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+------------------------------------
+| epoch              | 4           |
+| stats_g/mean       | -0.16113684 |
+| stats_g/std        | 0.9912643   |
+| stats_o/mean       | 0.029572943 |
+| stats_o/std        | 1.0681288   |
+| test/episode       | 100.0       |
+| test/mean_Q        | -0.11866031 |
+| test/success_rate  | 1.0         |
+| train/episode      | 100.0       |
+| train/success_rate | 0.0         |
+------------------------------------
+Saving epochs to file...
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 5            |
+| stats_g/mean       | -0.16089232  |
+| stats_g/std        | 0.9893637    |
+| stats_o/mean       | 0.027094685  |
+| stats_o/std        | 1.0666194    |
+| test/episode       | 120.0        |
+| test/mean_Q        | -0.056965012 |
+| test/success_rate  | 1.0          |
+| train/episode      | 120.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+Saving epochs to file...
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_5.pkl ...
+------------------------------------
+| epoch              | 6           |
+| stats_g/mean       | -0.16242261 |
+| stats_g/std        | 0.98608834  |
+| stats_o/mean       | 0.023598304 |
+| stats_o/std        | 1.0659468   |
+| test/episode       | 140.0       |
+| test/mean_Q        | -0.03995653 |
+| test/success_rate  | 1.0         |
+| train/episode      | 140.0       |
+| train/success_rate | 0.0         |
+------------------------------------
+Saving epochs to file...
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+------------------------------------
+| epoch              | 7           |
+| stats_g/mean       | -0.16391237 |
+| stats_g/std        | 0.984356    |
+| stats_o/mean       | 0.021534808 |
+| stats_o/std        | 1.0641259   |
+| test/episode       | 160.0       |
+| test/mean_Q        | 0.005255996 |
+| test/success_rate  | 0.0         |
+| train/episode      | 160.0       |
+| train/success_rate | 0.0         |
+------------------------------------
+-------------------------------------
+| epoch              | 8            |
+| stats_g/mean       | -0.16529411  |
+| stats_g/std        | 0.9817378    |
+| stats_o/mean       | 0.02141162   |
+| stats_o/std        | 1.0622455    |
+| test/episode       | 180.0        |
+| test/mean_Q        | -0.013295203 |
+| test/success_rate  | 0.0          |
+| train/episode      | 180.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+------------------------------------
+| epoch              | 9           |
+| stats_g/mean       | -0.16539915 |
+| stats_g/std        | 0.9801652   |
+| stats_o/mean       | 0.020773416 |
+| stats_o/std        | 1.0613948   |
+| test/episode       | 200.0       |
+| test/mean_Q        | 0.017821498 |
+| test/success_rate  | 0.0         |
+| train/episode      | 200.0       |
+| train/success_rate | 0.0         |
+------------------------------------
+Maximum success rate not reached. Saving maximum epochs to file...

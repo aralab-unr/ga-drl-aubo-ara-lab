@@ -61,11 +61,13 @@ def fitness_function(genome):
     if gamma >= 1:
         gamma = 0.999 #1
     Q_lr = decode_function(genome[22:33])
-    if Q_lr >= 1:
-        Q_lr = 0.999 #1
+    # if Q_lr >= 1:
+    #     Q_lr = 0.999 #1
+    Q_lr = 0.001
     pi_lr = decode_function(genome[34:44])
-    if pi_lr >= 1:
-        pi_lr = 0.999 #1
+    # if pi_lr >= 1:
+    #     pi_lr = 0.999 #1
+    pi_lr = 0.001
     random_eps = decode_function(genome[45:55])
     if random_eps >= 1:
         random_eps = 0.999 #1
@@ -143,7 +145,7 @@ def decode_function(genome_partial):
     return prod/1000
 
 # Configure the algorithm:
-population_size = 30 #30
+population_size = 50 #30
 genome_length = 66
 ga = GeneticAlgorithm(fitness_function)
 ga.generate_binary_population(size=population_size, genome_length=genome_length)
@@ -166,7 +168,7 @@ ga.single_point_cross_over = False # default False
 # You can call the method several times and adjust some parameters
 # (e.g. number_of_pairs, selective_pressure, mutation_rate,
 # allow_random_parent, single_point_cross_over)
-ga.run(30) #30 default 1000
+ga.run(50) #30 default 1000
 best_genome, best_fitness = ga.get_best_genome()
 
 print("BEST CHROMOSOME IS")
