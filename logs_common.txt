@@ -1,0 +1,2 @@
+======Setting Parameters value=========
+Tau = 0.233 || Gamma = 0.591 || Q_learning = 0.001 || pi_learning = 0.001 || random_epsilon = 0.917 || noise_epsilon = 0.258

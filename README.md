@@ -155,6 +155,6 @@ sys.exit()
 
 **Reward**: Computed as absolute distance between corresponding joint states
 
-**Success**: A joint state is considered success if distance between the joint states if less than 0.1
+**Success**: A joint state is considered success if distance between the joint states is less than 0.1
 
-**Step**: 
+**Step**: 1. Take an action governing by DRL algorithm 2. compute reward 3. decide if it is success or not

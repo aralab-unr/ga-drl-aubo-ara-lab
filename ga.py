@@ -74,7 +74,7 @@ def fitness_function(genome):
     noise_eps = decode_function(genome[56:66])
     if noise_eps >= 1:
         noise_eps = 0.999 #1
-    epochs_default = 20 #50
+    epochs_default = 10 #50
     env = 'AuboReach-v2' #'AuboReach-v0'
     logdir = '$HOME/openaiGA' #'/tmp/openaiGA'
     num_cpu = 6
@@ -94,13 +94,7 @@ def fitness_function(genome):
     #calling training to calculate number of epochs required to reach close to maximum success rate
     os.system(query)
     #epochs = train.launch(env, logdir, epochs_default, num_cpu, 0, 'future', 5, 1, polyak, gamma)
-    #env, logdir, n_epochs, num_cpu, seed, replay_strategy, policy_save_interval, clip_return   
-
-    ##tracking time to execute one run
-    programExecutionTime = time.time() - start_time  # seconds
-    programExecutionTime = programExecutionTime / (60)  # minutes
-    with open('logs_common.txt', 'a') as output:
-        output.write("======Run " + str(timesEvaluated) + " took " + str(programExecutionTime) + " minutes to complete=========" + "\n")
+    #env, logdir, n_epochs, num_cpu, seed, replay_strategy, policy_save_interval, clip_return
 
     file = open('epochs.txt', 'r')
 
@@ -112,10 +106,18 @@ def fitness_function(genome):
     if epochs == None:
         epochs = epochs_default
 
+    ##tracking time to execute one run
+    programExecutionTime = time.time() - start_time  # seconds
+    programExecutionTime = programExecutionTime / (60)  # minutes
+    with open('logs_common.txt', 'a') as output:
+        output.write("Epochs taken " + str(epochs) + "\n")
+        output.write("======Run " + str(timesEvaluated) + " took " + str(
+                programExecutionTime) + " minutes to complete=========" + "\n")
+
     global bestepochs
     if bestepochs == -1:
         bestepochs = epochs
-    if epochs < bestepochs:
+    if epochs < bestepochs or (epochs < epochs_default and timesEvaluated == 1):
         bestepochs = epochs
         with open('BestParameters.txt', 'a') as output:
             output.write("Epochs taken to converge : " + str(bestepochs) + "\n")

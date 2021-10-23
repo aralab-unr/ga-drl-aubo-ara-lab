@@ -2,7 +2,7 @@ cd catkin_workspace/
 source devel/setup.bash
 rosdep install openai_ros
 cd
-cd workspace/ga-drl-aubo-success-code/
+cd workspace/ga-drl-aubo/
 python3 ga.py
 
 roslaunch aubo_i5_moveit_config demo.launch
