@@ -22,6 +22,8 @@ python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA --n_epochs=100 --num
 python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA-test --n_epochs=10 --num_cpu=6 --polyak_value=0.004 --gamma_value=0.193 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.814 --noise_epsilon=0.94
 python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA-test --n_epochs=10 --num_cpu=6 --polyak_value=0.897 --gamma_value=1.048 --q_learning=0.372 --pi_learning=0.705 --random_epsilon=0.988 --noise_epsilon=0.135
 
+python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA-test --n_epochs=30 --num_cpu=6 --polyak_value=0.924 --gamma_value=0.949 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.584 --noise_epsilon=0.232
+
 python3 plot.py $HOME/openaiGA
 
 

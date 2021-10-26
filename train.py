@@ -124,12 +124,12 @@ def train(policy, rollout_worker, evaluator,
             with open('epochs.txt', 'w') as output:
                 output.write(str(epoch + 1))
             # Exit training if maximum success rate reached
-            sys.exit()
+            #sys.exit()
         if epoch==(n_epochs-1):
             logger.info('Maximum success rate not reached. Saving maximum epochs to file...')
             with open('epochs.txt', 'w') as output:
                 output.write(str(n_epochs))
-            sys.exit()
+            #sys.exit()
 
         if rank == 0 and success_rate >= best_success_rate and save_policies:
             best_success_rate = success_rate
