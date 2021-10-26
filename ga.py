@@ -117,19 +117,20 @@ def fitness_function(genome):
     global bestepochs
     if bestepochs == -1:
         bestepochs = epochs
-    if epochs < bestepochs or (epochs < epochs_default and timesEvaluated == 1):
+    if epochs < bestepochs:
         bestepochs = epochs
-        with open('BestParameters.txt', 'a') as output:
-            output.write("Epochs taken to converge : " + str(bestepochs) + "\n")
-            output.write("Tau = " + str(polyak) + "\n")
-            output.write("Gamma = " + str(gamma) + "\n")
-            output.write("Q_learning = " + str(Q_lr) + "\n")
-            output.write("pi_learning = " + str(pi_lr) + "\n")
-            output.write("random_epsilon = " + str(random_eps) + "\n")
-            output.write("noise_epsilon = " + str(noise_eps) + "\n")
-            output.write("\n")
-            output.write("=================================================")
-            output.write("\n")
+        if epochs < bestepochs or (epochs < epochs_default):
+            with open('BestParameters.txt', 'a') as output:
+                output.write("Epochs taken to converge : " + str(bestepochs) + "\n")
+                output.write("Tau = " + str(polyak) + "\n")
+                output.write("Gamma = " + str(gamma) + "\n")
+                output.write("Q_learning = " + str(Q_lr) + "\n")
+                output.write("pi_learning = " + str(pi_lr) + "\n")
+                output.write("random_epsilon = " + str(random_eps) + "\n")
+                output.write("noise_epsilon = " + str(noise_eps) + "\n")
+                output.write("\n")
+                output.write("=================================================")
+                output.write("\n")
 
     print('EPOCHS taken to converge:' + str(epochs))
 

@@ -104,13 +104,26 @@ def train(policy, rollout_worker, evaluator,
         #         'logs_success_rate_per_epoch.txt', 'a') as output:
         #     output.write(str(success_rate) + "\n")
         #checking if success rate has reached close to maximum, if so, return number of epochs
-        if success_rate >= 0.8: #0.85
+        # if success_rate >= 0.8: #0.85
+        #     logger.info('Saving epochs to file...')
+        #     # with open('logs_common.txt', 'a') as output:
+        #     #     output.write("Successful epoch value FOUND at " + str(epoch+1) + "epochs" + "\n")
+        #     with open('epochs.txt', 'w') as output:
+        #         output.write(str(epoch+1))
+        #     #Exit training if maximum success rate reached
+        #     sys.exit()
+
+        global total_success
+        # checking if success rate has reached close to maximum, if so, return number of epochs
+        if success_rate == 1.0:
+            total_success += 1
+        else:
+            total_success = 0
+        if total_success == 10:  # 0.85
             logger.info('Saving epochs to file...')
-            # with open('logs_common.txt', 'a') as output:
-            #     output.write("Successful epoch value FOUND at " + str(epoch+1) + "epochs" + "\n")
             with open('epochs.txt', 'w') as output:
-                output.write(str(epoch+1))
-            #Exit training if maximum success rate reached
+                output.write(str(epoch + 1))
+            # Exit training if maximum success rate reached
             sys.exit()
         if epoch==(n_epochs-1):
             logger.info('Maximum success rate not reached. Saving maximum epochs to file...')
