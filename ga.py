@@ -74,7 +74,7 @@ def fitness_function(genome):
     noise_eps = decode_function(genome[56:66])
     if noise_eps >= 1:
         noise_eps = 0.999 #1
-    epochs_default = 10 #50
+    epochs_default = 15 #50
     env = 'AuboReach-v2' #'AuboReach-v0'
     logdir = '$HOME/openaiGA' #'/tmp/openaiGA'
     num_cpu = 6
@@ -117,8 +117,9 @@ def fitness_function(genome):
     global bestepochs
     if bestepochs == -1:
         bestepochs = epochs
-    if epochs < bestepochs:
-        bestepochs = epochs
+    if epochs < bestepochs or (epochs < epochs_default):
+        if epochs < bestepochs:
+            bestepochs = epochs
         if epochs < bestepochs or (epochs < epochs_default):
             with open('BestParameters.txt', 'a') as output:
                 output.write("Epochs taken to converge : " + str(bestepochs) + "\n")

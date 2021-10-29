@@ -14,7 +14,7 @@ from rollout import RolloutWorker
 from util import mpi_fork
 import time
 
-
+total_success = 0
 from subprocess import CalledProcessError
 
 def mpi_average(value):
@@ -45,7 +45,7 @@ def train(policy, rollout_worker, evaluator,
         #     output.write("Current epoch: " + str(epoch) + "\n")
         #     output.write("Calling rollout workers for training" + "\n")
         # train
-        # rollout_worker.clear_history()
+        rollout_worker.clear_history()
         for cycle in range(n_cycles):
             #logger.info(config.DEFAULT_PARAMS['_polyak'])
             #config.DEFAULT_PARAMS['_polyak'] = round(random.uniform(0, 1), 3)
@@ -124,12 +124,12 @@ def train(policy, rollout_worker, evaluator,
             with open('epochs.txt', 'w') as output:
                 output.write(str(epoch + 1))
             # Exit training if maximum success rate reached
-            #sys.exit()
+            sys.exit()
         if epoch==(n_epochs-1):
             logger.info('Maximum success rate not reached. Saving maximum epochs to file...')
             with open('epochs.txt', 'w') as output:
                 output.write(str(n_epochs))
-            #sys.exit()
+            sys.exit()
 
         if rank == 0 and success_rate >= best_success_rate and save_policies:
             best_success_rate = success_rate
@@ -254,7 +254,7 @@ def launch(
 
 
 @click.command()
-@click.option('--env', type=str, default='AuboReach-v1', help='the name of the OpenAI Gym environment that you want to train on')
+@click.option('--env', type=str, default='AuboReach-v2', help='the name of the OpenAI Gym environment that you want to train on')
 @click.option('--logdir', type=str, default='$HOME/openaiGA', help='the path to where logs and policy pickles should go. If not specified, creates a folder in /tmp/')
 @click.option('--n_epochs', type=int, default=150, help='the number of training epochs to run')
 @click.option('--num_cpu', type=int, default=6, help='the number of CPU cores to use (using MPI)')

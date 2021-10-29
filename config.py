@@ -11,8 +11,12 @@ for env in gym.envs.registry.env_specs:
           del gym.registry.env_specs[env]
 #from aubo_reach4_env import PickbotEnv
 from aubo_reach5_env import PickbotEnv
+from aubo_reach6_env import PickbotEnv
 DEFAULT_ENV_PARAMS = {
     'AuboReach-v2': {
+        'n_cycles': 10,
+    },
+    'AuboReach-v3': {
         'n_cycles': 10,
     },
 }
