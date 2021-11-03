@@ -116,6 +116,7 @@ Gym Environments available for GA-DRL execution (can be changes in ga.py):
 - AuboReach-v1 - only calculates actions but does not execute joint states (increased learning speed)
 - AuboReach-v2 - only calculates actions but does not execute joint states (increased learning speed), reward fixes to converge the learning curve
 - AuboReach-v3 - only calculates actions but does not execute joint states (increased learning speed), reward fixes to converge the learning curve, only 4 Aubo joints in action
+- AuboReach-v4 - executes joint states with moveit, only run with first 3 joint states
 
 ## How to train the environment manually
 ```
