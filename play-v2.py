@@ -20,7 +20,7 @@ def main(policy_file, seed, n_test_rollouts):
     with open(policy_file, 'rb') as f:
         policy = pickle.load(f)
     #env_name = policy.info['env_name']
-    env_name = 'AuboReach-v0'
+    env_name = 'AuboReach-v4'
     # Prepare params.
     params = config.DEFAULT_PARAMS
     if env_name in config.DEFAULT_ENV_PARAMS:

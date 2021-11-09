@@ -7,7 +7,7 @@ import json
 import sys
 from mpi4py import MPI
 import logger
-from misc_utils import set_global_seeds
+from misc_util import set_global_seeds
 from mpi_moments import mpi_moments
 import config as config
 from rollout import RolloutWorker
@@ -119,13 +119,14 @@ def train(policy, rollout_worker, evaluator,
             total_success += 1
         else:
             total_success = 0
-        if total_success == 10:  # 0.85
+
+        if total_success == 16:  # 0.85
             logger.info('Saving epochs to file...')
             with open('epochs.txt', 'w') as output:
                 output.write(str(epoch + 1))
             # Exit training if maximum success rate reached
             sys.exit()
-        if epoch==(n_epochs-1):
+        if epoch == (n_epochs - 1):
             logger.info('Maximum success rate not reached. Saving maximum epochs to file...')
             with open('epochs.txt', 'w') as output:
                 output.write(str(n_epochs))
@@ -133,7 +134,8 @@ def train(policy, rollout_worker, evaluator,
 
         if rank == 0 and success_rate >= best_success_rate and save_policies:
             best_success_rate = success_rate
-            logger.info('New best success rate: {}. Saving policy to {} ...'.format(best_success_rate, best_policy_path))
+            logger.info(
+                'New best success rate: {}. Saving policy to {} ...'.format(best_success_rate, best_policy_path))
             evaluator.save_policy(best_policy_path)
             evaluator.save_policy(latest_policy_path)
         if rank == 0 and policy_save_interval > 0 and epoch % policy_save_interval == 0 and save_policies:
@@ -254,7 +256,7 @@ def launch(
 
 
 @click.command()
-@click.option('--env', type=str, default='AuboReach-v2', help='the name of the OpenAI Gym environment that you want to train on')
+@click.option('--env', type=str, default='AuboReach-v3', help='the name of the OpenAI Gym environment that you want to train on')
 @click.option('--logdir', type=str, default='$HOME/openaiGA', help='the path to where logs and policy pickles should go. If not specified, creates a folder in /tmp/')
 @click.option('--n_epochs', type=int, default=150, help='the number of training epochs to run')
 @click.option('--num_cpu', type=int, default=6, help='the number of CPU cores to use (using MPI)')
