@@ -46,7 +46,7 @@ class PickbotEnv(gym.GoalEnv):
         self.action_space = spaces.Box(-1.7, 1.7, shape=(4,), dtype="float32")
 
         # self.goal = np.array([-0.503, 0.605, -1.676])
-        self.goal = np.array([-0.503, 0.605, -1.676, 1.367])
+        self.goal = np.array([-0.503, 0.605, -1.676, 1.391])
 
         obs = self._get_obs()
         self.observation_space = spaces.Dict(

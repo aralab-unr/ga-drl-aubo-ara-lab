@@ -15,6 +15,7 @@ from gym import utils, spaces
 from gym.utils import seeding
 from gym.envs.registration import register
 from scipy.spatial.transform import Rotation
+
 # OTHER FILES
 # import util_env as U
 # import math_util as UMath
@@ -24,8 +25,11 @@ import logger
 from std_msgs.msg import String
 from std_msgs.msg import Bool
 from sensor_msgs.msg import JointState
+
 from sensor_msgs.msg import Image
+
 from geometry_msgs.msg import Point, Quaternion, Vector3
+
 from geometry_msgs.msg import Pose
 from geometry_msgs.msg import Point, PoseStamped
 from openai_ros.msg import RLExperimentInfo
@@ -40,17 +44,20 @@ register(
 
 # DEFINE ENVIRONMENT CLASS
 class PickbotEnv(gym.GoalEnv):
+
     def __init__(self, joint_increment=None, sim_time_factor=0.005, random_object=False, random_position=False,
                  use_object_type=False, populate_object=False, env_object_type='free_shapes'):
 
         rospy.init_node('env_node', anonymous=True)
         self._seed()
+
         # Assign Parameters
         self._joint_increment = joint_increment  # joint_increment in rad
         self._random_object = random_object
         self._random_position = random_position
         self._use_object_type = use_object_type
         self._populate_object = populate_object
+
         # Assign MsgTypes
         self.joints_state = JointState()
         self.current_pose_moveit = PoseStamped()
@@ -68,11 +75,12 @@ class PickbotEnv(gym.GoalEnv):
         rospy.Subscriber("/move_group/feedback", MoveGroupActionFeedback, self.move_group_action_feedback_callback,
                          queue_size=4)
 
-        self.new_action = [0, 0, 0]
+        self.new_action = [0, 0, 0, 0]
 
-        self.action_space = spaces.Box(-1.7, 1.7, shape=(3,), dtype="float32")
+        self.action_space = spaces.Box(-1.7, 1.7, shape=(4,), dtype="float32")
 
-        self.goal = np.array([-0.503, 0.605, -1.676])
+        self.goal = np.array([-0.503, 0.605, -1.676, 1.391])
+
         self.check_joint_states()
         obs = self._get_obs()
         self.observation_space = spaces.Dict(
@@ -95,6 +103,7 @@ class PickbotEnv(gym.GoalEnv):
         print("------------------start seed-------------------------")
         print("-------------------exit seed-----------------")
         self.done_reward = 0
+
         # set up everything to publish the Episode Number and Episode Reward on a rostopic
         self.episode_num = 0
         self.accumulated_episode_reward = 0
@@ -107,6 +116,7 @@ class PickbotEnv(gym.GoalEnv):
         print("CSV NAME")
         print(self.csv_name)
         self.csv_success_exp = "success_exp" + datetime.datetime.now().strftime('%Y-%m-%d_%Hh%Mmin') + ".csv"
+
         # self.reset()
 
     def goal_distance(self, goal_a, goal_b):
@@ -138,6 +148,7 @@ class PickbotEnv(gym.GoalEnv):
         self._check_all_systems_ready()
 
         observation = self._get_obs()
+
         self._update_episode()
         return observation
 
@@ -147,6 +158,7 @@ class PickbotEnv(gym.GoalEnv):
         Gripper = np.asarray(gripper_joints)
 
         distance = np.linalg.norm(Object - Gripper)
+
         return distance
 
     def step(self, action):
@@ -160,9 +172,11 @@ class PickbotEnv(gym.GoalEnv):
         while True:
             if self.movement_complete.data == True:
                 break
-        new_action = np.append(action, [0.0, 0.0, 0.0])
+        new_action = np.append(action, [0.0, 0.0])
+
         current_joint = np.asarray(
-            [self.joints_state.position[0], self.joints_state.position[1], self.joints_state.position[2]])
+            [self.joints_state.position[0], self.joints_state.position[1], self.joints_state.position[2],
+             self.joints_state.position[3]])
         start_ros_time = rospy.Time.now()
         print(action)
         obs = self._get_obs()
@@ -176,6 +190,7 @@ class PickbotEnv(gym.GoalEnv):
 
         print('action: {}'.format(action))
         print('achieved: {}'.format(obs['achieved_goal']))
+
         done = False
 
         info = {
@@ -184,6 +199,7 @@ class PickbotEnv(gym.GoalEnv):
         reward = self.compute_reward(obs["achieved_goal"], self.goal, info)
 
         self.episode_steps += 1
+
         self.accumulated_episode_reward += reward
         # print("======================the reward==========================")
         print(reward)
@@ -191,6 +207,7 @@ class PickbotEnv(gym.GoalEnv):
         row_list = [reward, self.counter]
         with open('rewards.csv', 'a', encoding='UTF8', newline='') as f:
             writer = csv.writer(f)
+
             # write the header
             writer.writerow(row_list)
         self.counter = self.counter + 1
@@ -224,6 +241,7 @@ class PickbotEnv(gym.GoalEnv):
         action_position = last_position + action
         # clip action that is going to be published to -2.9 and 2.9 just to make sure to avoid loosing controll of controllers
         x = np.clip(action_position, -(math.pi - 0.05), math.pi - 0.05)
+
         return x.tolist()
 
     def _get_obs(self):
@@ -244,13 +262,15 @@ class PickbotEnv(gym.GoalEnv):
         shoulder_joint_state = joint_states.position[0]
         foreArm_joint_state = joint_states.position[1]
         upperArm_joint_state = joint_states.position[2]
+        wrist_joint_state = joint_states.position[3]
 
         for joint in joint_states.position:
             if joint > 2 * math.pi or joint < -2 * math.pi:
                 print(joint_states.name)
                 print(np.around(joint_states.position, decimals=3))
                 sys.exit("Joint exceeds limit")
-        self.curr_joint = np.array([shoulder_joint_state, foreArm_joint_state, upperArm_joint_state])
+
+        self.curr_joint = np.array([shoulder_joint_state, foreArm_joint_state, upperArm_joint_state, wrist_joint_state])
         object = self.goal
         # rel_pos = self.get_distance_gripper_to_object(self.joints_state.position)
 
@@ -282,6 +302,7 @@ class PickbotEnv(gym.GoalEnv):
                 self.episode_steps,
                 self.episode_num
             )
+
         self.episode_num += 1
         self.accumulated_episode_reward = 0
         self.episode_steps = 0
@@ -302,5 +323,6 @@ class PickbotEnv(gym.GoalEnv):
         self.episode_list.append(episode_number)
         self.step_list.append(steps)
         list = str(reward) + ";" + str(episode_number) + ";" + str(steps) + "\n"
+
         with open(self.csv_name + '.csv', 'a') as csv:
             csv.write(str(list))
