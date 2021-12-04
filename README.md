@@ -172,15 +172,15 @@ sys.exit()
 ## Aubo environment setup details:
 **NOTE**: Some experiments are using less than 6 joints for learning. Please refer to environments section for details.
 
-**Action**: Each action is a set of 6 joint states of Aubo i5 robot
+**Action**: Each action is a set of 4 joint states of Aubo i5 robot (not using two wrist joints)
 
 **Action space**: Each joint state can take joint values between -1.7 and 1.7
 
-**Goal**: Random reachable point (a set of 6 joint states), [-0.503, 0.605, -1.676, 1.367, -1.527, -0.036]
+**Goal**: Random reachable point (a set of 6 joint states), [-0.503, 0.605, -1.676, 1.391]
 
-**Initial State**: [0, 0, 0, 0, 0, 0]
+**Initial State**: [0, 0, 0, 0]
 
-**Reset state**: [0, 0, 0, 0, 0, 0]
+**Reset state**: [0, 0, 0, 0]
 
 **Reward**: Computed as absolute distance between corresponding joint states
 
