@@ -204,13 +204,13 @@ class PickbotEnv(gym.GoalEnv):
         # print("======================the reward==========================")
         print(reward)
         # print('==========================================================')
-        row_list = [reward, self.counter]
-        with open('rewards.csv', 'a', encoding='UTF8', newline='') as f:
-            writer = csv.writer(f)
-
-            # write the header
-            writer.writerow(row_list)
-        self.counter = self.counter + 1
+        # row_list = [reward, self.counter]
+        # with open('rewards.csv', 'a', encoding='UTF8', newline='') as f:
+        #     writer = csv.writer(f)
+        #
+        #     # write the header
+        #     writer.writerow(row_list)
+        # self.counter = self.counter + 1
         return obs, reward, done, info
 
     def _check_all_systems_ready(self):
