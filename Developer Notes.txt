@@ -25,6 +25,11 @@ python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA-test --n_epochs=10 -
 python3 -m train --env=AuboReach-v3 --logdir=$HOME/openaiGA --n_epochs=20 --num_cpu=4 --polyak_value=0.924 --gamma_value=0.949 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.584 --noise_epsilon=0.232
 python3 -m train --env=AuboReach-v2 --logdir=$HOME/openaiGA-test --n_epochs=30 --num_cpu=6 --polyak_value=0.209 --gamma_value=0.287 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.405 --noise_epsilon=0.247
 
+# ga found params
+python3 -m train --env=AuboReach-v5 --logdir=$HOME/openaiGA --n_epochs=30 --num_cpu=1 --polyak_value=0.924 --gamma_value=0.988 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.912 --noise_epsilon=0.748
+# original
+python3 -m train --env=AuboReach-v5 --logdir=$HOME/openaiGA-test --n_epochs=30 --num_cpu=1 --polyak_value=0.95 --gamma_value=0.98 --q_learning=0.001 --pi_learning=0.001 --random_epsilon=0.3 --noise_epsilon=0.2
+
 python3 plot.py $HOME/openaiGA
 
 python3 play-v2.py $HOME/openaiGA/policy_best.pkl

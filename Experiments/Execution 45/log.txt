@@ -1,0 +1,423 @@
+Logging to /home/adarshsehgal/openaiGA
+T: 200
+_Q_lr: 0.001
+_action_l2: 1.0
+_batch_size: 256
+_buffer_size: 1000000
+_clip_obs: 200.0
+_hidden: 256
+_layers: 3
+_max_u: 1.7
+_network_class: actor_critic:ActorCritic
+_norm_clip: 5
+_norm_eps: 0.01
+_pi_lr: 0.001
+_polyak: 0.924
+_relative_goals: False
+_scope: ddpg
+ddpg_params: {'buffer_size': 1000000, 'hidden': 256, 'layers': 3, 'network_class': 'actor_critic:ActorCritic', 'polyak': 0.924, 'batch_size': 256, 'Q_lr': 0.001, 'pi_lr': 0.001, 'norm_eps': 0.01, 'norm_clip': 5, 'max_u': 1.7, 'action_l2': 1.0, 'clip_obs': 200.0, 'scope': 'ddpg', 'relative_goals': False}
+env_name: AuboReach-v5
+gamma: 0.988
+make_env: <function prepare_params.<locals>.make_env at 0x7fb5c40385f0>
+n_batches: 40
+n_cycles: 10
+n_test_rollouts: 10
+noise_eps: 0.748
+random_eps: 0.912
+replay_k: 4
+replay_strategy: future
+rollout_batch_size: 2
+test_with_polyak: False
+
+*** Warning ***
+You are running HER with just a single MPI worker. This will work, but the experiments that we report in Plappert et al. (2018, https://arxiv.org/abs/1802.09464) were obtained with --num_cpu 19. This makes a significant difference and if you are looking to reproduce those results, be aware of this. Please also refer to https://github.com/openai/baselines/issues/314 for further details.
+****************
+
+Creating a DDPG agent with action space 4 x 1.7...
+Training...
+------------------------------------
+| epoch              | 0           |
+| stats_g/mean       | -0.15341249 |
+| stats_g/std        | 1.0366856   |
+| stats_o/mean       | -0.26750553 |
+| stats_o/std        | 1.1955354   |
+| test/episode       | 20.0        |
+| test/mean_Q        | -1.7713315  |
+| test/success_rate  | 0.0         |
+| train/episode      | 20.0        |
+| train/success_rate | 0.0         |
+------------------------------------
+New best success rate: 0.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_0.pkl ...
+-------------------------------------
+| epoch              | 1            |
+| stats_g/mean       | -0.045938447 |
+| stats_g/std        | 1.0139704    |
+| stats_o/mean       | -0.14698896  |
+| stats_o/std        | 1.1516228    |
+| test/episode       | 40.0         |
+| test/mean_Q        | -1.6206057   |
+| test/success_rate  | 0.05         |
+| train/episode      | 40.0         |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 0.05. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 2            |
+| stats_g/mean       | 0.00549444   |
+| stats_g/std        | 1.0090888    |
+| stats_o/mean       | -0.047192026 |
+| stats_o/std        | 1.1753857    |
+| test/episode       | 60.0         |
+| test/mean_Q        | -1.969353    |
+| test/success_rate  | 0.0          |
+| train/episode      | 60.0         |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 3            |
+| stats_g/mean       | -0.020161305 |
+| stats_g/std        | 1.0270274    |
+| stats_o/mean       | -0.035301458 |
+| stats_o/std        | 1.2006726    |
+| test/episode       | 80.0         |
+| test/mean_Q        | -1.9036286   |
+| test/success_rate  | 0.25         |
+| train/episode      | 80.0         |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 0.25. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 4            |
+| stats_g/mean       | -0.015914591 |
+| stats_g/std        | 1.0158956    |
+| stats_o/mean       | -0.009622073 |
+| stats_o/std        | 1.189549     |
+| test/episode       | 100.0        |
+| test/mean_Q        | -1.8396256   |
+| test/success_rate  | 0.5          |
+| train/episode      | 100.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 0.5. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+--------------------------------------
+| epoch              | 5             |
+| stats_g/mean       | -0.013601233  |
+| stats_g/std        | 1.0101085     |
+| stats_o/mean       | -0.0031974353 |
+| stats_o/std        | 1.1779238     |
+| test/episode       | 120.0         |
+| test/mean_Q        | -2.2245288    |
+| test/success_rate  | 0.6           |
+| train/episode      | 120.0         |
+| train/success_rate | 0.0           |
+--------------------------------------
+New best success rate: 0.6. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_5.pkl ...
+-------------------------------------
+| epoch              | 6            |
+| stats_g/mean       | 0.0086724935 |
+| stats_g/std        | 1.0032508    |
+| stats_o/mean       | 0.012695492  |
+| stats_o/std        | 1.1755614    |
+| test/episode       | 140.0        |
+| test/mean_Q        | -1.8022852   |
+| test/success_rate  | 0.9          |
+| train/episode      | 140.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 0.9. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 7            |
+| stats_g/mean       | 0.011484541  |
+| stats_g/std        | 0.9883383    |
+| stats_o/mean       | 0.0063211704 |
+| stats_o/std        | 1.1534141    |
+| test/episode       | 160.0        |
+| test/mean_Q        | -2.1722956   |
+| test/success_rate  | 0.75         |
+| train/episode      | 160.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 8            |
+| stats_g/mean       | 0.010810261  |
+| stats_g/std        | 0.98283964   |
+| stats_o/mean       | 0.0018613166 |
+| stats_o/std        | 1.1470017    |
+| test/episode       | 180.0        |
+| test/mean_Q        | -1.9848137   |
+| test/success_rate  | 1.0          |
+| train/episode      | 180.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+--------------------------------------
+| epoch              | 9             |
+| stats_g/mean       | 0.0078480905  |
+| stats_g/std        | 0.971823      |
+| stats_o/mean       | -0.0036775449 |
+| stats_o/std        | 1.1357133     |
+| test/episode       | 200.0         |
+| test/mean_Q        | -1.7367531    |
+| test/success_rate  | 1.0           |
+| train/episode      | 200.0         |
+| train/success_rate | 0.0           |
+--------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 10           |
+| stats_g/mean       | -0.019280229 |
+| stats_g/std        | 0.9627205    |
+| stats_o/mean       | -0.008668551 |
+| stats_o/std        | 1.1247964    |
+| test/episode       | 220.0        |
+| test/mean_Q        | -1.812454    |
+| test/success_rate  | 1.0          |
+| train/episode      | 220.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_10.pkl ...
+-------------------------------------
+| epoch              | 11           |
+| stats_g/mean       | -0.016452603 |
+| stats_g/std        | 0.96637857   |
+| stats_o/mean       | 0.002911109  |
+| stats_o/std        | 1.1234713    |
+| test/episode       | 240.0        |
+| test/mean_Q        | -2.2376795   |
+| test/success_rate  | 0.95         |
+| train/episode      | 240.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+--------------------------------------
+| epoch              | 12            |
+| stats_g/mean       | -0.0039768876 |
+| stats_g/std        | 0.9619868     |
+| stats_o/mean       | 0.004851153   |
+| stats_o/std        | 1.1158247     |
+| test/episode       | 260.0         |
+| test/mean_Q        | -2.0967898    |
+| test/success_rate  | 0.95          |
+| train/episode      | 260.0         |
+| train/success_rate | 0.0           |
+--------------------------------------
+---------------------------------------
+| epoch              | 13             |
+| stats_g/mean       | -0.00026365183 |
+| stats_g/std        | 0.95289266     |
+| stats_o/mean       | -0.00073464867 |
+| stats_o/std        | 1.1047261      |
+| test/episode       | 280.0          |
+| test/mean_Q        | -2.0995603     |
+| test/success_rate  | 1.0            |
+| train/episode      | 280.0          |
+| train/success_rate | 0.0            |
+---------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+--------------------------------------
+| epoch              | 14            |
+| stats_g/mean       | -0.009879367  |
+| stats_g/std        | 0.95136964    |
+| stats_o/mean       | -0.0046224855 |
+| stats_o/std        | 1.1039586     |
+| test/episode       | 300.0         |
+| test/mean_Q        | -2.3767078    |
+| test/success_rate  | 1.0           |
+| train/episode      | 300.0         |
+| train/success_rate | 0.0           |
+--------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+--------------------------------------
+| epoch              | 15            |
+| stats_g/mean       | -0.009650962  |
+| stats_g/std        | 0.954849      |
+| stats_o/mean       | -0.0023490349 |
+| stats_o/std        | 1.1067798     |
+| test/episode       | 320.0         |
+| test/mean_Q        | -2.3596408    |
+| test/success_rate  | 1.0           |
+| train/episode      | 320.0         |
+| train/success_rate | 0.0           |
+--------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_15.pkl ...
+--------------------------------------
+| epoch              | 16            |
+| stats_g/mean       | -0.012788463  |
+| stats_g/std        | 0.9519218     |
+| stats_o/mean       | -0.0042642467 |
+| stats_o/std        | 1.1002651     |
+| test/episode       | 340.0         |
+| test/mean_Q        | -2.2723207    |
+| test/success_rate  | 1.0           |
+| train/episode      | 340.0         |
+| train/success_rate | 0.0           |
+--------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 17           |
+| stats_g/mean       | -0.015651353 |
+| stats_g/std        | 0.95358753   |
+| stats_o/mean       | -0.009049889 |
+| stats_o/std        | 1.0961771    |
+| test/episode       | 360.0        |
+| test/mean_Q        | -2.243283    |
+| test/success_rate  | 1.0          |
+| train/episode      | 360.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 18           |
+| stats_g/mean       | -0.019908352 |
+| stats_g/std        | 0.95427394   |
+| stats_o/mean       | -0.015213265 |
+| stats_o/std        | 1.0950773    |
+| test/episode       | 380.0        |
+| test/mean_Q        | -2.3991504   |
+| test/success_rate  | 0.8          |
+| train/episode      | 380.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 19           |
+| stats_g/mean       | -0.022029307 |
+| stats_g/std        | 0.9520381    |
+| stats_o/mean       | -0.017732557 |
+| stats_o/std        | 1.091994     |
+| test/episode       | 400.0        |
+| test/mean_Q        | -2.1642394   |
+| test/success_rate  | 0.9          |
+| train/episode      | 400.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 20           |
+| stats_g/mean       | -0.019836487 |
+| stats_g/std        | 0.9493699    |
+| stats_o/mean       | -0.01908114  |
+| stats_o/std        | 1.0868278    |
+| test/episode       | 420.0        |
+| test/mean_Q        | -2.745507    |
+| test/success_rate  | 1.0          |
+| train/episode      | 420.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_20.pkl ...
+-------------------------------------
+| epoch              | 21           |
+| stats_g/mean       | -0.018935911 |
+| stats_g/std        | 0.94621414   |
+| stats_o/mean       | -0.02160076  |
+| stats_o/std        | 1.0851866    |
+| test/episode       | 440.0        |
+| test/mean_Q        | -2.9834445   |
+| test/success_rate  | 0.95         |
+| train/episode      | 440.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 22           |
+| stats_g/mean       | -0.016351309 |
+| stats_g/std        | 0.94098043   |
+| stats_o/mean       | -0.025919225 |
+| stats_o/std        | 1.0778741    |
+| test/episode       | 460.0        |
+| test/mean_Q        | -2.6112113   |
+| test/success_rate  | 1.0          |
+| train/episode      | 460.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 23           |
+| stats_g/mean       | -0.013581693 |
+| stats_g/std        | 0.93857193   |
+| stats_o/mean       | -0.019871337 |
+| stats_o/std        | 1.0769502    |
+| test/episode       | 480.0        |
+| test/mean_Q        | -2.4013896   |
+| test/success_rate  | 1.0          |
+| train/episode      | 480.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+-------------------------------------
+| epoch              | 24           |
+| stats_g/mean       | -0.015042137 |
+| stats_g/std        | 0.9391466    |
+| stats_o/mean       | -0.021912381 |
+| stats_o/std        | 1.0748401    |
+| test/episode       | 500.0        |
+| test/mean_Q        | -2.3985116   |
+| test/success_rate  | 1.0          |
+| train/episode      | 500.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+------------------------------------
+| epoch              | 25          |
+| stats_g/mean       | -0.02373185 |
+| stats_g/std        | 0.9366337   |
+| stats_o/mean       | -0.02919313 |
+| stats_o/std        | 1.0701042   |
+| test/episode       | 520.0       |
+| test/mean_Q        | -2.9784503  |
+| test/success_rate  | 1.0         |
+| train/episode      | 520.0       |
+| train/success_rate | 0.0         |
+------------------------------------
+New best success rate: 1.0. Saving policy to /home/adarshsehgal/openaiGA/policy_best.pkl ...
+Saving periodic policy to /home/adarshsehgal/openaiGA/policy_25.pkl ...
+-------------------------------------
+| epoch              | 26           |
+| stats_g/mean       | -0.029401885 |
+| stats_g/std        | 0.9352036    |
+| stats_o/mean       | -0.03449539  |
+| stats_o/std        | 1.065852     |
+| test/episode       | 540.0        |
+| test/mean_Q        | -2.307528    |
+| test/success_rate  | 0.9          |
+| train/episode      | 540.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 27           |
+| stats_g/mean       | -0.04139239  |
+| stats_g/std        | 0.9349808    |
+| stats_o/mean       | -0.045481108 |
+| stats_o/std        | 1.0642128    |
+| test/episode       | 560.0        |
+| test/mean_Q        | -2.433277    |
+| test/success_rate  | 0.85         |
+| train/episode      | 560.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 28           |
+| stats_g/mean       | -0.039239813 |
+| stats_g/std        | 0.9314724    |
+| stats_o/mean       | -0.043804646 |
+| stats_o/std        | 1.0630426    |
+| test/episode       | 580.0        |
+| test/mean_Q        | -3.1188092   |
+| test/success_rate  | 0.7          |
+| train/episode      | 580.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+-------------------------------------
+| epoch              | 29           |
+| stats_g/mean       | -0.037831284 |
+| stats_g/std        | 0.9302932    |
+| stats_o/mean       | -0.044376984 |
+| stats_o/std        | 1.0615472    |
+| test/episode       | 600.0        |
+| test/mean_Q        | -2.5896823   |
+| test/success_rate  | 0.9          |
+| train/episode      | 600.0        |
+| train/success_rate | 0.0          |
+-------------------------------------
+Maximum success rate not reached. Saving maximum epochs to file...
