@@ -2,7 +2,7 @@ from collections import deque
 
 import numpy as np
 import pickle
-#from mujoco_py import MujocoException
+from mujoco_py import MujocoException
 
 from util import convert_episode_to_batch_major, store_args
 
@@ -10,7 +10,7 @@ from util import convert_episode_to_batch_major, store_args
 class RolloutWorker:
 
     @store_args
-    def __init__(self, make_env, policy, dims, logger, T, rollout_batch_size=2,
+    def __init__(self, make_env, policy, dims, logger, T, rollout_batch_size=1,
                  exploit=False, use_target_net=False, compute_Q=False, noise_eps=0,
                  random_eps=0, history_len=100, render=False, **kwargs):
         """Rollout worker generates experience by interacting with one or many environments.
@@ -32,7 +32,8 @@ class RolloutWorker:
         """
         self.envs = [make_env() for _ in range(rollout_batch_size)]
         assert self.T > 0
-
+        self.total_reward = 0
+        self.total_steps = 0
         self.info_keys = [key.replace('info_', '') for key in dims.keys() if key.startswith('info_')]
 
         self.success_history = deque(maxlen=history_len)
@@ -64,8 +65,9 @@ class RolloutWorker:
         """Performs `rollout_batch_size` rollouts in parallel for time horizon `T` with the current
         policy acting on it accordingly.
         """
+        self.total_reward = 0
         self.reset_all_rollouts()
-
+        
         # compute observations
         o = np.empty((self.rollout_batch_size, self.dims['o']), np.float32)  # observations
         ag = np.empty((self.rollout_batch_size, self.dims['g']), np.float32)  # achieved goals
@@ -99,10 +101,12 @@ class RolloutWorker:
             success = np.zeros(self.rollout_batch_size)
             # compute new states and observations
             for i in range(self.rollout_batch_size):
-             
+                try:
                     # We fully ignore the reward here because it will have to be re-computed
                     # for HER.
-                    curr_o_new, _, _, info = self.envs[i].step(u[i])
+                    curr_o_new, reward, _, info = self.envs[i].step(u[i])
+                    self.total_steps += 1
+                    self.total_reward += reward
                     if 'is_success' in info:
                         success[i] = info['is_success']
                     o_new[i] = curr_o_new['observation']
@@ -111,10 +115,11 @@ class RolloutWorker:
                         info_values[idx][t, i] = info[key]
                     if self.render:
                         self.envs[i].render()
-                
+                except MujocoException as e:
+                    return self.generate_rollouts()
 
             if np.isnan(o_new).any():
-                self.logger.warning('NaN caught during rollout generation. Trying again...')
+                self.logger.warn('NaN caught during rollout generation. Trying again...')
                 self.reset_all_rollouts()
                 return self.generate_rollouts()
 
@@ -173,7 +178,8 @@ class RolloutWorker:
         if self.compute_Q:
             logs += [('mean_Q', np.mean(self.Q_history))]
         logs += [('episode', self.n_episodes)]
-
+        logs += [('reward', self.total_reward)]
+        logs += [('steps', self.total_steps)]
         if prefix is not '' and not prefix.endswith('/'):
             return [(prefix + '/' + key, val) for key, val in logs]
         else:

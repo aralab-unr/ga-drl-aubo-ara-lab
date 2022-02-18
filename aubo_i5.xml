@@ -1,0 +1,253 @@
+<mujoco model="aubo_i5">
+    <compiler angle="radian" meshdir="../meshes/" />
+    <size njmax="500" nconmax="100" />
+    <asset>
+        <mesh name="base_Link" file="base_Link.STL" />
+        <mesh name="shoulder_Link" file="shoulder_Link.STL" />
+        <mesh name="s_Link" file="s_Link.STL" />
+        <mesh name="upperArm_Link" file="upperArm_Link.STL" />
+        <mesh name="f1_Link" file="f1_Link.STL" />
+        <mesh name="foreArm_Link" file="foreArm_Link.STL" />
+        <mesh name="u_Link" file="u_Link.STL" />
+        <mesh name="wrist1_Link" file="wrist1_Link.STL" />
+        <mesh name="w1_Link" file="w1_Link.STL" />
+        <mesh name="wrist2_Link" file="wrist2_Link.STL" />
+        <mesh name="w2_Link" file="w2_Link.STL" />
+        <mesh name="wrist3_Link" file="wrist3_Link.STL" />
+        <mesh name="l_finger" file="l_finger.stl" />
+        <mesh name="l_finger_tip" file="l_finger_tip.stl" />
+	<mesh name="door" file="door_door.STL" />
+	<mesh name="frame" file="door_frame.STL" />
+	<mesh name="handle" file="door_handle.STL" />
+
+        
+        <texture type="skybox" builtin="gradient" width="128" height="128" rgb1=".4 .6 .8" 
+            rgb2="0 0 0"/>  
+        <texture name="texgeom" type="cube" builtin="flat" mark="cross" width="127" height="1278" 
+            rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" markrgb="1 1 1" random="0.01"/>  
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" 
+            width="512" height="512"/>  
+
+        <material name='MatPlane' reflectance='0.3' texture="texplane" texrepeat="1 1" texuniform="true"/>
+        <material name='geom' texture="texgeom" texuniform="true"/>
+
+    </asset>
+
+    <equality>
+            <!-- <weld body1="mocap" body2="wrist3_Link" solimp="0.9 0.95 0.001" solref="0.02 1"></weld> -->
+            <weld body1="mocap" body2="right_tip" solimp="0.99 0.99 0" solref="0.0001 1"></weld>
+    </equality>
+
+    <worldbody>
+
+
+        <geom name='floor' pos='0 0 .15' size='5 5 .125' type='plane' material="MatPlane" condim='3'/>
+
+        <light mode='targetbodycom' target='right_gripper_link' directional='false' diffuse='.8 .8 .8' specular='0.3 0.3 0.3' pos='0 0 4.0' dir='0 0 -1'/>
+
+		<camera name='targeting' pos='1 1 2' mode='targetbodycom' target='right_gripper_link'/> 
+
+        <body mocap="true" name="mocap" pos="0 0 0">
+		    <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
+		    <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="1 0.005 0.005" type="box"></geom>
+		    <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 1 0.001" type="box"></geom>
+		    <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.005 1" type="box"></geom>
+	    </body>
+        
+        <body name="moving_base_Link" pos="0.0 0.0 0.42">
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="125" diaginertia="9.81771 8.50417 4.98854" />
+            <geom size="0.4 0.275 0.21" type="box" rgba="1 0.65098 0 1" />
+            <body name="base_Link" pos="0 0 0.21">
+                <inertial pos="1.3658e-09 -0.00014692 0.01035" quat="0.500403 0.499597 -0.499543 0.500457" mass="4.3712" diaginertia="0.0015561 0.00079449 0.000793888" />
+                <geom type="mesh" rgba="0 0 0.8 1" mesh="base_Link" /> 
+                <body name="shoulder_Link" pos="0 0 0.0985" quat="-3.67321e-06 0 0 1">
+                    <inertial pos="4.2237e-07 0.0063705 -0.014748" quat="0.685243 0.167203 -0.168086 0.688646" mass="1.4505" diaginertia="0.00325138 0.0032429 0.00264262" />
+			<!--Joint Range set-->
+                    <joint name="shoulder_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-0.02 -0.01" />
+                    <geom type="mesh" rgba="1 0.65098 0 1" mesh="shoulder_Link"/>
+                    <body name="s_Link" pos="0 0 0">
+                        <inertial pos="2.75455e-06 -0.00487873 0.0702855" quat="0.0557686 0.704908 0.0581499 0.704708" mass="0.0933503" diaginertia="0.000206938 0.000118262 0.000117274" />
+                        <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="s_Link" />
+                    </body>
+                    <body name="upperArm_Link" pos="0 0.1405 0" quat="0.499998 -0.5 -0.5 -0.500002">
+                        <inertial pos="0.204 4.917e-09 -0.01129" quat="0.500001 0.5 0.5 0.499999" mass="3.7898" diaginertia="0.13195 0.13086 0.0077566" />
+			<!--Joint Range set-->
+                        <joint name="upperArm_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-0.7 -0.3" />
+                        <geom type="mesh" rgba="1 0.65098 0 1" mesh="upperArm_Link" />
+                        <body name="f1_Link" pos="0 0 0">
+                            <inertial pos="0.204 0 0.0702855" quat="4.93973e-06 0.707107 -4.93973e-06 0.707107" mass="0.186701" diaginertia="0.00855511 0.00838035 0.000241097" />
+                            <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="f1_Link" />
+                        </body>
+                        <body name="foreArm_Link" pos="0.408 0 0" quat="-3.67321e-06 -1 0 0">
+                            <inertial pos="0.18437 7.5869e-07 0.11576" quat="0.499055 0.500937 0.501038 0.498966" mass="2.2177" diaginertia="0.042245 0.0421316 0.00194937" />
+			<!--Joint Range set-->
+                            <joint name="foreArm_joint" pos="0 0 0" axis="0 0 1" limited="true" range="1.1 1.4" />
+                            <geom type="mesh" rgba="1 0.65098 0 1" mesh="foreArm_Link" />
+                            <body name="u_Link" pos="0 0 0">
+                                <inertial pos="0.379773 -1.22708e-07 0.169253" quat="-0.00196803 0.639583 0.00243454 0.768716" mass="0.0218153" diaginertia="2.37813e-05 1.42954e-05 1.40315e-05" />
+                                <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="u_Link" />
+                            </body>
+                            <body name="wrist1_Link" pos="0.376 0 0.019" quat="-2.59734e-06 0.707105 0.707108 -2.59735e-06">
+                                <inertial pos="5.3024e-07 0.01312 -0.0045695" quat="0.813144 0.582063 1.9966e-05 -7.01761e-06" mass="0.44685" diaginertia="0.00048851 0.000477673 0.000347767" />
+			<!--Joint Range set-->
+                                <joint name="wrist1_joint" pos="0 0 0" axis="0 0 1" limited="true" range="0 0.002" />
+                                <geom type="mesh" rgba="1 0.65098 0 1" mesh="wrist1_Link" />
+                                <body name="w1_Link" pos="0 0 0">
+                                    <inertial pos="1.22352e-07 -0.0477531 0.00377323" quat="0.704383 0.0623653 -0.0667678 0.703916" mass="0.0218153" diaginertia="2.37813e-05 1.42954e-05 1.40315e-05" />
+                                    <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="w1_Link" />
+                                </body>
+                                <body name="wrist2_Link" pos="0 0.1025 0" quat="0.707105 -0.707108 0 0">
+                                    <inertial pos="-5.3024e-07 -0.01312 -0.0045695" quat="0.582063 0.813144 -7.01761e-06 1.9966e-05" mass="0.44685" diaginertia="0.00048851 0.000477673 0.000347767" />
+			<!--Joint Range set-->
+                                    <joint name="wrist2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="0 0.000002" />
+                                    <geom type="mesh" rgba="1 0.65098 0 1" mesh="wrist2_Link" />
+                                    <body name="w2_Link" pos="0 0 0">
+                                        <inertial pos="-1.22708e-07 0.0477531 0.00377323" quat="0.704383 -0.0623653 0.0667678 0.703916" mass="0.0218153" diaginertia="2.37813e-05 1.42954e-05 1.40315e-05" />
+                                        <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="w2_Link" />
+                                    </body>
+                                    <body name="wrist3_Link" pos="0 -0.094 0" quat="0.707105 0.707108 0 0">
+                                        <inertial pos="-1.0787e-10 -3.6569e-05 -0.018611" quat="-0.000869644 0.707106 -0.000869644 0.707106" mass="0.13571" diaginertia="9.52382e-05 5.94288e-05 5.9222e-05" />
+			<!--Joint Range set-->
+                                        <joint name="wrist3_joint" pos="0 0 0" axis="0 0 -1" limited="true" range="0 0.002" />
+                                        <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="wrist3_Link" />
+                                        <body name="ee_Link" pos="0 0 0">
+                                            <inertial pos="0 0 0.05" mass="0.001" diaginertia="1.66667e-08 1.66667e-08 1.66667e-08" />
+                                            <geom size="0.005 0.005 0.005" pos="0 0 0.05" type="box" />
+                                        </body>
+
+
+                                       <!--<body name="left_gripper_link" pos="0 0 0" quat="0.5 -0.5 -0.5 -0.5">
+                                            <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                            <joint name="left_gripper_joint" pos="0 0 0" axis="0 0 1" limited="true" range="0 0.5" />
+                                            <geom type="mesh" mesh="l_finger" />
+                                            <body name="left_tip" pos="0 0 0">
+                                                <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                                <geom pos="0.09137 0.00495 0" type="mesh" mesh="l_finger_tip" />
+                                    		</body>
+                                        </body>--> 
+                                        <body name="right_gripper_link" pos="0 0 0" quat="0.5 -0.5 -0.5 -0.5">
+                                        <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                        <joint name="right_gripper_joint" pos="0 0 0" axis="0 0 -1" limited="true" range="-0.5 0" />
+                                        <geom quat="4.63268e-05 -1 0 0" type="mesh" mesh="l_finger" />
+                                        <body name="right_tip" pos="0 0 0">
+                                            <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                            <geom pos="0.09137 0.00495 0" quat="4.63268e-05 -1 0 0" type="mesh" mesh="l_finger_tip" />
+                                        </body>
+                                        </body>
+
+                                        <!-- <body name="left_gripper_link" pos="0 0 0" quat="0.5 -0.5 -0.5 -0.5">
+                                            <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                            <joint name="left_gripper_joint" pos="0 0 0" axis="0 0 1" limited="true" range="0 0.05" />
+                                            <geom type="mesh" mesh="l_finger" />
+                                            <body name="left_tip" pos="0 0 0">
+                                                <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                                <geom pos="0.09137 0.00495 0" type="mesh" mesh="l_finger_tip" />
+                                            </body>
+                                        </body> -->
+                                        <!-- <body name="right_gripper_link" pos="0 0 0" quat="0.5 -0.5 -0.5 -0.5">
+					    <camera name='gripper_camera' pos='0 0 0' zaxis="1 0 0" mode='fixed'/>
+                                            <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                            <joint name="right_gripper_joint" pos="0 0 0" axis="0 0 -1" limited="true" range="-0.05 -0.04" />
+                                            <geom quat="4.63268e-05 -1 0 0" type="mesh" mesh="l_finger" />
+                                            <body name="right_tip" pos="0 0 0">
+                                                <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                                <geom pos="0.09137 0.00495 0" quat="4.63268e-05 -1 0 0" type="mesh" mesh="l_finger_tip" />
+                                            </body>
+                                        </body> -->
+                                        <site name="grip" pos="0.02 0 0" rgba="0 0 0 0" size="0.02 0.02 0.02"></site>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <body name="left_wheel_Link" pos="0.0 -0.325 -0.17" quat="0.5 -0.5 -0.5 -0.5">
+                <inertial pos="0.5 0.5 0.5" mass="1.5" diaginertia="0.0265972 0.0265972 0.0265972" />
+                <joint name="base_to_left_wheel_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05"/>
+                <geom size="0.125 0.05" type="cylinder" rgba="0 0 0.8 1" />
+            </body>
+<!--            <body name="stand_Link" pos="0.75 -0.275 -0.125">
+                <inertial pos="0 0 0" mass="1.9635" diaginertia="0.0114537 0.0114537 0.00245437" />
+                <geom size="0.05 0.125" type="cylinder" rgba="0 0 0.8 1" />
+            </body>-->
+            <body name="right_wheel_Link" pos="0.0 0.325 -0.17" quat="0.5 -0.5 -0.5 -0.5">
+                <inertial pos="0.5 0.5 0.5" quat="0 0 0 1" mass="1.5" diaginertia="0.0265972 0.0265972 0.0265972" />
+                <joint name="base_to_right_wheel_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-3.05 3.05" />
+                <geom size="0.125 0.05" type="cylinder" rgba="0 0 0.8 1" />
+            </body>
+        </body>
+
+        <!-- Target -->
+<!--	<body name="door_handle" pos="0 0 0" quat="0.5 -0.5 -0.5 -0.5">
+                <inertial pos="0.5 0.5 0.5" mass="0.05" diaginertia="1 1 1" />
+                <geom size="0.125 0.05" type="mesh" mesh="handle" />
+        </body>
+	<body name="door" pos="0 0 0" quat="0.5 -0.5 -0.5 -0.5">
+                                            <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                            <joint name="door_joint" pos="0 0 0" axis="0 0 -1" limited="true" range="-0.0549 0.0548" />
+                                            <geom quat="4.63268e-05 -1 0 0" type="mesh" mesh="door" />
+                                            <body name="door_tip" pos="0 0 0">
+                                                <inertial pos="0 0 0" mass="0.05" diaginertia="1 1 1" />
+                                                <geom pos="0.09137 0.00495 0" quat="4.63268e-05 -1 0 0" type="mesh" mesh="l_finger_tip" />
+                                            </body>
+                                        </body> 
+        <body name="target" pos=".6 -.2 .8">
+            <joint armature="0" axis="1 0 0" damping="0" limited="true" name="target_x" pos="0 0 0" range="-.000027 .0000027" ref=".1" stiffness="0" type="slide"/>
+            <joint armature="0" axis="0 1 0" damping="0" limited="true" name="target_y" pos="0 0 0" range="-.000027 .000027" ref="-.1" stiffness="0" type="slide"/>
+            <joint armature="0" axis="0 0 1" damping="0" limited="true" name="target_z" pos="0 0 0" range="-.000027 .000027" ref="-.1" stiffness="0" type="hinge"/>
+            <geom conaffinity="0" contype="0" name="target" pos="0 0 0" rgba="0.9 0.2 0.2 1" size=".05 .05 .05" type="box"/>
+        </body>
+-->
+<!--	<body name="door" pos=".7 .42 0">
+            <joint armature="0" axis="1 0 0" damping="0" limited="true" name="door_x" pos="0 0 0" range="-.27 .27" ref=".1" stiffness="0" type="slide"/>
+            <joint armature="0" axis="0 1 0" damping="0" limited="true" name="door_y" pos="0 0 0" range="-.27 .27" ref="-.1" stiffness="0" type="slide"/>
+            <joint armature="0" axis="0 0 1" damping="0" limited="true" name="door_z" pos="0 0 0" range="-.27 .27" ref="-.1" stiffness="0" type="hinge"/>
+            <geom conaffinity="0" contype="0" name="door" pos="0 0 0" rgba="0.9 0.2 0.2 1" size=".05 .205 .505" type="box"/>
+        </body> -->
+	<body name="door" pos="0.7 -0.32 1.0" quat="0 1 0 0">
+			<joint axis="0 0 1" name="hinge" pos="0.2 0 0" limited="true" range="0 1.75" type="hinge"/>
+			<geom name="door_surface" rgba="0.9 0.2 0.2 1" size="0.02 0.2 0.5" type="box"/>
+			<!--<body name="handler" pos="-0.15 -0.05 0.0">
+				<geom rgba="1 0.65098 0 1" fromto="0.0 0. 0.0 0.0 0. 0.1" size="0.02" type="cylinder"/>
+				<joint name = "hanlder_joint" axis="0 1 0" limited="true" pos="0 0 0" range="-.1 0" stiffness="0" type="slide"/>
+			</body> -->
+			<!-- <body name="handle_1" pos="-0.05 -0.1 0"> -->
+            <body name="handle_1" pos="-0.05 -0.1 0">
+				<inertial pos="0.5 0.5 0.5" quat="0 0 0 1" mass="1.5" diaginertia="0.0265972 0.0265972 0.0265972" />
+				<geom conaffinity="0" contype="0" name="handle_1" pos="0 0 0" rgba="0 1 0 1" size=".03 .02 .02" type="box"/>
+			</body>
+			<!-- <body name="handle_2" pos="-0.05 -0.2 0.0"> -->
+            <body name="handle_2" pos="-0.05 -0.2 0.0">
+				<joint axis="1 0 0" name="handle_joint" pos="0.2 0 0" limited="true" range="-1.0 0" type="hinge"/>
+				<inertial pos="0.5 0.5 0.5" quat="0 0 0 1" mass="1.5" diaginertia="0.0265972 0.0265972 0.0265972" />
+            			<!-- <joint armature="0" axis="1 0 0" damping="0" limited="true" name="target_x" pos="0 0 0" range="-.000027 .0000027" ref=".1" stiffness="0" type="slide"/>
+            			<joint armature="0" axis="0 1 0" damping="0" limited="true" name="target_y" pos="0 0 0" range="-.000027 .000027" ref="-.1" stiffness="0" type="slide"/>
+            			<joint armature="0" axis="0 0 1" damping="0" limited="true" name="target_z" pos="0 0 0" range="-.000027 .000027" ref="-.1" stiffness="0" type="hinge"/> -->
+            			<geom conaffinity="0" contype="0" name="handle_2" pos="0 0 0" rgba="0 1 0 1" size=".02 .1 .02" type="box"/>
+        		</body>
+			<body name="target" pos="0.0 0.0 0.02">
+				<geom conaffinity="0" contype="0" name="target" pos="0 0 0" rgba="0.9 0.2 0.2 1" size="0.001 0.001 0.001" type="box"/>
+			</body>
+
+	</body>
+	
+    </worldbody>
+	
+
+    <actuator>
+        <motor name='shoulder_joint' gear='200' joint='shoulder_joint' />
+        <motor name='upperArm_joint' gear='200' joint='upperArm_joint' />
+        <motor name='foreArm_joint' gear='200'  joint='foreArm_joint' />
+        <motor name='wrist1_joint' gear='200'  joint='wrist1_joint' />
+        <motor name='wrist2_joint' gear='200'  joint='wrist2_joint' />
+        <motor name='wrist3_joint' gear='200'  joint='wrist3_joint' />
+        <!-- <motor name='left_gripper_joint' gear='200'  joint='left_gripper_joint' /> -->
+        <motor name='right_gripper_joint' gear='200'  joint='right_gripper_joint' />
+        <motor name='base_to_left_wheel_joint' gear='200'  joint='base_to_left_wheel_joint' />
+        <motor name='base_to_right_wheel_joint' gear='200'  joint='base_to_right_wheel_joint' />
+	<!-- <motor name='door_joint' gear='200'  joint='door_joint' /> -->
+
+    </actuator>
+
+</mujoco>
