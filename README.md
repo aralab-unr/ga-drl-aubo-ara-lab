@@ -2,13 +2,10 @@
 
 # GA-DRL paper citation
 ```
-@inproceedings{sehgal2019deep,
+@inproceedings{sehgal2022deep,
   title={Deep reinforcement learning using genetic algorithm for parameter optimization},
-  author={Sehgal, Adarsh and La, Hung and Louis, Sushil and Nguyen, Hai},
-  booktitle={2019 Third IEEE International Conference on Robotic Computing (IRC)},
-  pages={596--601},
-  year={2019},
-  organization={IEEE}
+  author={Sehgal, Adarsh and Ward, Nicholas and La, Hung and Papachristos, Christos and Louis, Sushil},
+  year={2022}
 }
 ```
 
@@ -180,9 +177,9 @@ sys.exit()
 
 **Goal**: Random reachable point (a set of 6 joint states), [-0.503, 0.605, -1.676, 1.391]
 
-**Initial State**: [0, 0, 0, 0]
+**Initial State**: [0, 0, 0, 0] (Some setups take random state)
 
-**Reset state**: [0, 0, 0, 0]
+**Reset state**: [0, 0, 0, 0] (Some setups take random state)
 
 **Reward**: Computed as absolute distance between corresponding joint states
 
