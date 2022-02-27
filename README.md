@@ -193,4 +193,4 @@ sys.exit()
 pip install stable-baselines3
 ```
 
-Relevant files are [here](Other methods).
+Relevant files are [here](Other_methods/).
