@@ -186,3 +186,11 @@ sys.exit()
 **Success**: A joint state is considered success if distance between the joint states is less than 0.1
 
 **Step**: 1. Take an action governing by DRL algorithm 2. compute reward 3. decide if it is success or not
+
+## How to run PPO, A2C and DDPG:
+
+```
+pip install stable-baselines3
+```
+
+Relevant files are [here](Other methods).
