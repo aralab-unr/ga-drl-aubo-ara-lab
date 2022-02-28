@@ -9,6 +9,8 @@
 }
 ```
 
+Research paper can be found [here](GA-DRL_paper.pdf).
+
 ## Prerequisite
 - Must have compiled the aubo robot github repo under the kinetic branch,which can be found here:
   - It is safe to remove auto_controller folder if you get build error with this package
