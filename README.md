@@ -2,9 +2,10 @@
 
 # GA-DRL paper citation
 ```
-@inproceedings{sehgal2022deep,
-  title={Deep reinforcement learning using genetic algorithm for parameter optimization},
-  author={Sehgal, Adarsh and Ward, Nicholas and La, Hung and Papachristos, Christos and Louis, Sushil},
+@article{sehgal2022ga,
+  title={GA-DRL: Genetic Algorithm-Based Function Optimizer in Deep Reinforcement Learning for Robotic Manipulation Tasks},
+  author={Sehgal, Adarsh and Ward, Nicholas and La, Hung Manh and Papachristos, Christos and Louis, Sushil},
+  journal={arXiv preprint arXiv:2203.00141},
   year={2022}
 }
 ```
@@ -158,7 +159,11 @@ You can see the environment in action by providing the policy file:
 python3 play.py <file_path>
 python3 play.py /tmp/openaiGA/policy_best.pkl
 ```
-where file_path = /tmp/openaiGA/policy_best.pkl in our case  .
+where file_path = /tmp/openaiGA/policy_best.pkl in our case.
+
+## Data used to plot the results:
+The data generated from GA-DRL, and used to plot the results can be found on 
+[this Google Drive link](https://drive.google.com/drive/folders/13W4tecVQwYZGA-8V5FqbnjW9WSyyJXcJ?usp=sharing).
 
 ## How to plot results:
 For one set of parameter values and for one DRL run, plot results using:
